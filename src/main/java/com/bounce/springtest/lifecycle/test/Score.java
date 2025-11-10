@@ -7,23 +7,24 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.HashMap;
 import java.util.Map;
 
+@RequestMapping("/lifecycle/test01")
 @Controller
 public class Score {
 
     @ResponseBody
-    @RequestMapping("/lifecycle/test01/1")
+    @RequestMapping("/1")
     public String htmlResponse() {
         return "<html>\n" +
                 "   <head><title>테스트 프로젝트 완성</title></head>\n" +
                 "      <body>\n" +
-                "       <h2>테스트 프로젝트 완성</h2>\n" +
-                "       <div>해당 프로젝틀르 통해서 문제 풀이를 진행 합니다</div>\n" +
+                "       <h1>테스트 프로젝트 완성</h1>\n" +
+                "       <h3>해당 프로젝트를 통해서 문제 풀이를 진행 합니다</h3>\n" +
                 "       </body>\n" +
                 "</html>";
     }
 
     @ResponseBody
-    @RequestMapping("/lifecycle/test01/2")
+    @RequestMapping("/2")
     public Map<String, Integer> mapResponse() {
 
         Map<String, Integer> scoreMap = new HashMap<>();
