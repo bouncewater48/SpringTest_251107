@@ -15,5 +15,18 @@ public interface RealEstateRepository {
     // real_estate 테이블에서 전달받은 월세보다 낮은 행들 조회
     public List<RealEstate> selectRealEstateListByRentPrice(@Param("rentPrice")int rentPrice);
 
+    public List<RealEstate> selectRealEstateListByAreaAndPrice(
+            @Param("area")int area
+            , @Param("price") int price);
+
+    public int insertRealtorEstate(
+            @Param("realtorId") int realtorId
+            , @Param("address") String address
+            , @Param("area") int area
+            , @Param("type") String type
+            , @Param("price") int price);
+
+    public int InsertRealEstateObject(RealEstate realEstate);
+
 }
 

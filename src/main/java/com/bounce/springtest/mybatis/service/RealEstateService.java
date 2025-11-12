@@ -31,5 +31,34 @@ public class RealEstateService {
 
         return realEstateList;
     }
-    
+
+    public List<RealEstate> getRealEstateListByAreaAndPrice(int area, int price) {
+
+        List<RealEstate> realEstateList = realEstateRepository.selectRealEstateListByAreaAndPrice(area, price);
+
+        return realEstateList;
+
+    }
+
+    public int createRealEstate(
+            int realtorId
+            , String address
+            , int area
+            , String type
+            , int price) {
+
+        int count = realEstateRepository.insertRealtorEstate(realtorId, address, area, type, price);
+
+        return count;
+
+    }
+
+    public int createRealEstateObject(RealEstate realEstate) {
+
+        int count = realEstateRepository.InsertRealEstateObject(realEstate);
+
+        return count;
+
+    }
+
 }

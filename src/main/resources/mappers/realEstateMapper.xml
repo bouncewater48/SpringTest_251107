@@ -43,4 +43,69 @@
             ]]>
     </select>
 
+    <select id="selectRealEstateListByAreaAndPrice" parameterType="map"
+    resultType="com.bounce.springtest.mybatis.domain.RealEstate">
+        SELECT
+            `id`
+             , `realtor_id`
+             , `address`
+             , `area`
+             , `type`
+             , `price`
+             , `rent_price`
+             , `created_at`
+             , `updated_at`
+        FROM
+            `real_estate`
+        WHERE
+            <![CDATA[
+            `area` >= #{area}
+            AND `price` <= #{price}
+            ]]>
+    </select>
+
+    <!-- 오타가 발생하면 찾기 매우 힘들어지니 얌전히 레퍼지토리에서 복사해서 사용할것   -->
+    <insert id="insertRealtorEstate" parameterType="map">
+        INSERT INTO
+            `real_estate`
+        (
+            `realtor_id`
+            , `address`
+            , `area`
+            , `type`
+            , `price`
+        )
+        VALUE
+        (
+            #{realtorId}
+            , #{address}
+            , #{area}
+            , #{type}
+            , #{price}
+        )
+    </insert>
+
+    <insert id="InsertRealEstateObject"
+    parameterType="com.bounce.springtest.mybatis.domain.RealEstate">
+        INSERT INTO
+            `real_estate`
+        (
+            `realtor_id`
+            , `address`
+            , `area`
+            , `type`
+            , `price`
+            , `rent_price`
+        )
+        VALUE
+        (
+            #{realtorId}
+            , #{address}
+            , #{area}
+            , #{type}
+            , #{price}
+            , #{rentPrice}
+        )
+    </insert>
+
 </mapper>

@@ -38,6 +38,35 @@ public class RealEstateController {
         return realEstateList;
     }
 
+    @ResponseBody
+    @RequestMapping("/select/3")
+    public List<RealEstate> realEstateAreaAndPrice(
+            @RequestParam("area") int area
+            , @RequestParam("price") int price) {
 
+        // 면적과 가격에 대한 조건에 대응 되는 매물 리스트 얻어 오기
+        List<RealEstate> realEstateList = realEstateService.getRealEstateListByAreaAndPrice(area, price);
+
+        return realEstateList;
+
+    }
+
+    @ResponseBody
+    @RequestMapping("/insert/1")
+    public String insertRealEstate() {
+//        int count = realEstateService.createRealEstate(3, "푸르지용 리버 303동 1104호", 89,"매매", 100000);
+
+
+        RealEstate realEstate = new RealEstate();
+        realEstate.setAddress("썅떼빌리버 오피스텔 814호");
+        realEstate.setArea(45);
+        realEstate.setType("월세");
+        realEstate.setPrice(100000);
+        realEstate.setRentPrice(120);
+
+        int count = realEstateService.createRealEstateObject(realEstate);
+
+        return "입력 성공 : " + count;
+    }
 
 }
