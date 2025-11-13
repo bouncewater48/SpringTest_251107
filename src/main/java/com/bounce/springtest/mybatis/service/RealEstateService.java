@@ -61,4 +61,20 @@ public class RealEstateService {
 
     }
 
+    // 특정 id의 매물 정보와 type 과 가격을 수정하는 기능
+    public int updateRealEstate(int id, String type, int price) {
+
+        int count = realEstateRepository.updateRealEstate(id, type, price);
+
+        return count;
+    }
+
+    public int deleteRealEstate(int id) {
+
+        int count = realEstateRepository.deleteRealEstate(id);
+
+        return count;
+
+    }
+
 }
