@@ -10,14 +10,47 @@
         (
             `nickname`
             , `temperature`
-            , `profileImage`
+            , `profile_image`
         )
         VALUE
         (
             #{nickname}
             , #{temperature}
-            , #{profile_image}
+            , #{profileImage}
         )
     </insert>
+
+    <select id="selectLastSeller"
+    resultType="com.bounce.springtest.mvc.domain.Seller">
+
+        SELECT
+            `id`
+            , `nickname`
+            , `temperature`
+            , `profile_image`
+            , `createrd_at`
+            , `updated_at`
+        FROM
+            `seller`
+        ORDER BY `id` DESC
+        LIMIT 1
+    </select>
+
+    <select id="selectSeller" parameterType="int"
+                resultType="com.bounce.springtest.mvc.domain.Seller">
+
+        SELECT
+            `id`
+             , `nickname`
+             , `temperature`
+             , `profile_image`
+             , `createrd_at`
+             , `updated_at`
+        FROM
+            `seller`
+        WHERE
+            `id` = #{id}
+
+    </select>
 
 </mapper>

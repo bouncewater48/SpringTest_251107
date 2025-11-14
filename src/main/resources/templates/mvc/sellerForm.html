@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>판매자 추가</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+</head>
+<body>
+
+    <form method="post" action="/mvc/seller/add">
+        <div class="container">
+            <h3>판매자 추가</h3>
+
+            <label>닉네임</label> <br>
+            <input type="text" class="form-control col-4"> <br>
+            <label>프로필 사진 url</label> <br>
+            <input type="url" class="form-control col-8"> <br>
+            <label>온도</label> <br>
+            <input type="text" class="form-control col-4"> <br>
+            <button type="submit" class="btn btn-primary mt-3">추가</button>
+        </div>
+    </form>
+
+</body>
+</html>

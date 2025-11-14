@@ -4,6 +4,9 @@ import com.bounce.springtest.mvc.domain.Seller;
 import com.bounce.springtest.mvc.repository.SellerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Service
 public class SellerService {
@@ -11,23 +14,26 @@ public class SellerService {
     @Autowired
     private SellerRepository sellerRepository;
 
-    public Seller getSellerList() {
+    public int createSeller(
+         String nickname
+        , double temperature
+        , String profileImage) {
 
-        // new_user 테이블에서 가장 최근 추가된 행 조회
-        Seller seller = sellerRepository.selectLastUser();
+        int count = sellerRepository.insertSeller(nickname, temperature, profileImage);
+
+        return count;
+    }
+
+    public Seller getLastSeller() {
+
+        Seller seller = sellerRepository.selectLastSeller();
 
         return seller;
     }
 
-    public int createSeller(
-        String nickname
-        , double temperature
-        , String profile_Image) {
-
-        int count = sellerRepository.insertSeller(nickname, temperature, profile_Image);
-
-        return count;
-
+    public Seller getSeller(int id) {
+        Seller seller = sellerRepository.selectSeller(id);
+        return seller;
     }
 
 }
