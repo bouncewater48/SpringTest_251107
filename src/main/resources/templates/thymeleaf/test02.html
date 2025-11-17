@@ -1,10 +1,67 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>반복문</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+          integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 </head>
 <body>
-$END$
+
+    <div class="container" id="test02-1">
+        <h2>HOT 5</h2>
+
+        <table class="table text-center">
+
+            <thead>
+                <tr>
+                    <th>순위</th>
+                    <th>제목</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr th:each="music, status:${musicRanking}">
+                    <td th:text="${status.count}"></td>
+                    <td th:text="${music}"></td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+
+    <div class="container" id="test02-2">
+        <h2>멤버십</h2>
+
+        <table class="table text-center">
+
+            <thead>
+                <tr>
+                    <th>이름</th>
+                    <th>전화 번호</th>
+                    <th>등급</th>
+                    <th>포인트</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr th:each="membership, status:${membership}">
+                    <td th:text="${membership.name}"></td>
+                    <td th:text="${membership.phoneNumber}"></td>
+                    <td th:switch="${membership.grade}">
+                        <span th:case="VIP" class="text-danger">VIP</span>
+                        <span th:case="GOLD" class="text-warning">GOLD</span>
+                        <span th:case="*">BASIC</span>
+                    </td>
+                    <td>
+                        <span th:if="${membership.point >= 5000}" th:text="|${membership.point}P|" class="text-primary"></span>
+                        <span th:if="${membership.point < 5000}" th:text="|${membership.point}P|" class="text-dark"></span>
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+
 </body>
 </html>
