@@ -40,11 +40,13 @@
                     <td>
                         <b th:text="${#strings.arraySplit(member.email, '@')[0]}"></b>@<span th:text="${#strings.arraySplit(member.email, '@')[1]}"></span>
                     </td>
-                    <td class="text-left">
-<!--                    <td th:text="${member.introduce}">-->
-                        <span th:if="${#strings.length(member.introduce) <= 15}" th:text="${member.introduce}"></span>
-                        <span th:unless="${#strings.length(member.introduce) <= 15}" th:text="|${#strings.substring(member.introduce, 0, 15)}...|"></span>
-                    </td>
+                    <!-- ...을 포함한 18자까지만 화면에 노출되고 그 이상은 잘리게 구현 -->
+                    <td th:text="${#strings.abbreviate(member.introduce, 18)}"></td>
+<!--                    <td class="text-left">-->
+<!--&lt;!&ndash;                    <td th:text="${member.introduce}">&ndash;&gt;-->
+<!--                        <span th:if="${#strings.length(member.introduce) <= 15}" th:text="${member.introduce}"></span>-->
+<!--                        <span th:unless="${#strings.length(member.introduce) <= 15}" th:text="|${#strings.substring(member.introduce, 0, 15)}...|"></span>-->
+<!--                    </td>-->
                 </tr>
             </tbody>
 
