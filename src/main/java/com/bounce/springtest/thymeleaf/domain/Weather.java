@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 public class Weather {
 
     private int id;
+    @DateTimeFormat(pattern="yyyy년 M월 d일")
     private LocalDate date;
     private String weather;
     private double temperatures;
