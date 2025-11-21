@@ -9,9 +9,36 @@
             `id`
             , `name`
             , `url`
-            , `creatdAt`
-            , `updatedAt`
+            , `created_at`
+            , `updated_at`
         FROM
             `favoritelist`
+        ORDER BY
+            `id` DESC
     </select>
+
+    <insert id="insertFavorite" parameterType="map">
+        INSERT INTO
+            `favoritelist`
+        (
+            `name`
+            , `url`
+        )
+        VALUE
+        (
+            #{name}
+            , #{url}
+        )
+    </insert>
+
+    <select id="countUrlByUrl" parameterType="string"
+    resultType="int">
+        SELECT
+            COUNT(*)
+        FROM
+            `favoritelist`
+        WHERE
+            `url` = #{url}
+    </select>
+
 </mapper>
