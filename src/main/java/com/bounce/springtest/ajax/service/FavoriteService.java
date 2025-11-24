@@ -41,4 +41,12 @@ public class FavoriteService {
 //        }
     }
 
+    public int deleteFavorite(int id) {
+
+        int count = favoriteRepository.deleteFavorite(id);
+
+        return count;
+
+    }
+
 }

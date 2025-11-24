@@ -70,4 +70,26 @@ public class FavoriteController {
 
     }
 
+
+    // 특정한 하나의 즐겨찾기 삭제 API
+    @ResponseBody
+    @GetMapping("/remove")
+    public Map<String, String> removeFavorite(@RequestParam("id") int id) {
+
+        int count = favoriteService.deleteFavorite(id);
+
+        Map<String, String> resultMap = new HashMap<>();
+        // 성공 : {"result":"success"}
+        // 실패 : {"result":"fail"}
+
+        if(count == 1) {
+            resultMap.put("result", "success");
+        } else {
+            resultMap.put("result", "fail");
+        }
+
+        return resultMap;
+
+    }
+
  }
