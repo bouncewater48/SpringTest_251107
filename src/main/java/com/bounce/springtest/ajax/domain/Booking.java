@@ -1,5 +1,6 @@
 package com.bounce.springtest.ajax.domain;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Booking {
@@ -8,7 +9,7 @@ public class Booking {
     private String name;
     private int headcount;
     private int day;
-    private String date;
+    private LocalDate date;
     private String phoneNumber;
     private String state;
     private LocalDateTime createdAt;
@@ -46,11 +47,11 @@ public class Booking {
         this.day = day;
     }
 
-    public String getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

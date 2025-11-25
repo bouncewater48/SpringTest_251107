@@ -5,6 +5,7 @@
     <title>통나무 팬션 예약하기 화면</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
           integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
 </head>
 <body>
     <div>
@@ -26,9 +27,9 @@
                     <label>이름</label>
                     <input type="text" class="form-control" id="nameInput">
                     <label>예약날짜</label>
-                    <input type="text" class="form-control" id="dayInput">
-                    <label>숙박일수</label>
                     <input type="text" class="form-control" id="dateInput">
+                    <label>숙박일수</label>
+                    <input type="text" class="form-control" id="dayInput">
                     <label>숙박인원</label>
                     <input type="text" class="form-control" id="headcountInput">
                     <label>전화번호</label>
@@ -49,6 +50,7 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
     <script>
         $("#bookingBtn").on("click", function() {
             let name = $("#nameInput").val();
@@ -82,7 +84,27 @@
                 return ;
             }
 
+            $.ajax({
+                type:"get"
+                , url:"/ajax/booking/add"
+                , data:{"name":name, "date":date, "day":day, "headcount":headcount, "phoneNumber":phoneNumber}
+                , success:function(response) {
+                    // 성공 : {"result":"success"}
+                    // 실패 :  {"result":"fail"}
+                    if(response.result === "success") {
+                        location.href = "/ajax/booking/list";
+                    } else {
+                        alert("예약 실패!!");
+                    }
+                }
+                , error:function() {
+                    alert("예약에러!");
+                }
+            });
+        });
 
+        $("#dateInput").datepicker({
+            dateFormat:"yy년 mm월 d일"
         })
 
     </script>

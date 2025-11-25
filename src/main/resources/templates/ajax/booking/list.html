@@ -40,16 +40,18 @@
                 <tbody>
                     <tr th:each="booking:${bookingList}" class="text-center">
                         <td th:text="${booking.name}">강승훈</td>
-                        <td th:text="${booking.date}">2021년 6월 30일</td>
+                        <td th:text="${#temporals.format(booking.date, 'yyyy년 M월 d일')}">2021년 6월 30일</td>
                         <td th:text="${booking.day}">2</td>
                         <td th:text="${booking.headcount}">4</td>
                         <td th:text="${booking.phoneNumber}">010-1232-1111</td>
                         <td th:switch="${booking.state}">
                             <span th:case="대기중" class="text-info">대기중</span>
                             <span th:case="확정" class="text-success">확정</span>
+                            <span th:case="확정" class="text-danger">취소</span>
+                            <span th:case="*" th:text="${booking.state}"></span>
                         </td>
                         <td>
-                            <button type="button" class="btn btn-danger">삭제</button>
+                            <button type="button" th:data-booking-id="${booking.id}" class="btn btn-danger btn-sm remove-btn">삭제</button>
                         </td>
                     </tr>
                 </tbody>
@@ -66,7 +68,34 @@
                 <div>Copyright 2025 tongnamu All right reserved</div>
             </div>
         </footer>
-
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script>
+        $(".remove-btn").on("click", function () {
+
+            let id = $(this).data("booking-id"); // data:{"id":id} 행 id(PK)를 여기서 저장(지정)하고 사용해야함!
+
+            $.ajax({
+                type:"get"
+                , url:"/ajax/booking/remove"
+                , data:{"id":id} // 오류 발생, 이유를 모르겠음
+                , success:function(response) {
+                    // 성공 : {"result":"success"}
+                    // 실패 : {"result":"fail"}
+                    if(response.result === "success") {
+                        location.reload();
+                    } else {
+                        alert("삭제 실패!!");
+                    }
+                }
+                , error:function() {
+                    alert("삭제 에러!");
+                }
+            })
+
+        })
+    </script>
+
 </body>
 </html>
