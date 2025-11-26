@@ -94,7 +94,7 @@ public class BookingController {
         Booking booking = bookingService.getBooking(name, phoneNumber);
 
         // 조회결과
-        // 조회 성공 : {"result":"success", "data":{"id": 10,"name": "김인규", "headcount": 2,...}}
+        // 조회 성공 : {"result":"success", "data":{"id": 10,"name": "강승훈", "headcount": 2,...}}
         // 조회 실패 : {"result":"fail"}
 
         Map<String, Object> resultMap = new HashMap<>();
